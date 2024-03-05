@@ -83,3 +83,8 @@ print(math.floor(3.3))
 zip_code = "69500"
 zip_value = int(zip_code)
 print(type(zip_value))
+
+#USER INPUT
+userInput = input("input an input 🤭 \n")
+print(userInput)
+print(type(userInput))
