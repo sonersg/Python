@@ -45,3 +45,23 @@ print(band)
 # delete and clear
 band["name"] = "Furkan"
 del band["id"]
+print(band)
+
+band2.clear()
+print(band2)
+
+del band2
+
+# copy dictionaries
+band2 = band.copy()
+band2["drums"] = "Soenr"
+print(band2)
+print(band)
+
+band3 = dict(band)
+print(band3)
+
+band2 = band #creates a reference
+band2["drums"] = "Soenr"
+print(band)
+
