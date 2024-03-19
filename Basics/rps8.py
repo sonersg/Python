@@ -15,16 +15,17 @@ class RPS(Enum):
 # print(RPS["ROCK"])
 # print(RPS.ROCK.value)
 
-def rps():
+def rps(name="Player"):
     game_count = 0
     player_wins = 0
     python_wins = 0
 
     def play_rps():
+        nonlocal name
         nonlocal player_wins
         nonlocal python_wins
 
-        playerChoice = input("\nEnter ...\n1 for Rock,\n2 for Paper, \n3 for Scissors:\n\n")
+        playerChoice = input(f"\n{name}, please enter ...\n1 for Rock,\n2 for Paper, \n3 for Scissors:\n\n")
 
         pattern = r"^[1-3]$" 
 
@@ -58,7 +59,7 @@ def rps():
                 return "Tie Game! 🤭"
             else:
                 python_wins += 1
-                return "Python wins! 🐍"
+                return f"Python wins! 🐍, {name} sucks!"
             
         print(decide_winner(player, computer))
         
@@ -66,7 +67,7 @@ def rps():
         game_count += 1
         print(f"\nGame count: {game_count}")
 
-        print(f"Player wins: {player_wins}")
+        print(f"{name}'s wins: {player_wins}")
         print(f"Python wins: {python_wins}")
 
         while True:
@@ -81,12 +82,25 @@ def rps():
         else:
             print("🎉 🎉 🎉 🎉 🎉 🎉 🎉")
             print("Thank you for playing!")
-            sys.exit("Bye! 👋")
+            sys.exit(f"Bye {name}! 👋 ")
 
     return play_rps
 
 # rps()() # closure 
-play = rps()
 
 if __name__ == "__main__":
+
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Play rock-paper-scissors."
+    )
+
+    parser.add_argument(
+        "-n", "--name", metavar="name",
+        required=True, help="The name of the player?"
+    )
+
+    args = parser.parse_args()
+
+    play = rps(args.name)
     play()
