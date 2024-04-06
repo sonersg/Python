@@ -12,3 +12,15 @@ Soner.getBalance()
 
 Soner.withdraw(2000)
 Soner.withdraw(20)
+
+Soner.transfer(30, Ömer)
+
+jim = InterestRewardAcc(1000, "Jim")
+jim.deposit(100)
+jim.getBalance()
+
+kim = SavingsAcc(1000, "Kim")
+kim.deposit(100)
+kim.getBalance()
+Soner.getBalance()
+kim.transfer(100, Soner)
