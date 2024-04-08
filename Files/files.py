@@ -21,7 +21,7 @@ for line in f:
 f.close()
 
 try:
-    f = open("nane_list.txt")
+    f = open("name_list.txt")
     print(f.read())
 except:
     print("The file may not exist.")
@@ -52,7 +52,7 @@ f.close()
 
 # two ways to create a file
 # Opens a file for writing and creates the file if it doesn't exist.
-f = open("new_context.txt", "w")
+f = open("new_file.txt", "w")
 f.close()
 
 # creates the file but returnes an error if it already exists.
