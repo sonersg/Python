@@ -5,30 +5,25 @@
 # pip install customtkinter
 # pip install pytube
 # deactivate
+# pip install pyinstaller
+# pyinstaller -F -w main.py
 
 import tkinter
 import customtkinter
 from pytube import YouTube
 from pytube.exceptions import RegexMatchError, VideoUnavailable
 
-# on_progress function
-def on_progress(stream, chunk, bytes_remaining):
-    total_size = stream.filesize
-    print(total_size)
-    bytes_downloaded = total_size - bytes_remaining
-    percentage_of_completion = bytes_downloaded / total_size * 100
-    per = str(int(percentage_of_completion))
-    pp.configure(text=per + "%")
-    pp.update()
-    progress_bar.set(percentage_of_completion / 100)
-
 # start_download function
 def start_download():
+
     try:
+        print("start_download")
         finish_label.configure(text="", text_color="white")
-        ytlink = inpt.get()
-        ytobject = YouTube(ytlink, on_progress_callback=on_progress)
+        url = inpt.get()
+        ytobject = YouTube(url, on_progress_callback=on_progress)
+        print(ytobject.title)
         label.configure(text=ytobject.title)
+        label.update()
         audio = ytobject.streams.get_audio_only()
         audio.download()
         # video = ytobject.streams.get_highest_resolution()
@@ -40,6 +35,17 @@ def start_download():
         finish_label.configure(text="Video is unavailable!", text_color="red")
     except Exception as e:
         finish_label.configure(text="An error occurred: " + str(e), text_color="red")
+
+# on_progress function
+def on_progress(stream, chunk, bytes_remaining):
+    print("on_progress")
+    total_size = stream.filesize
+    bytes_downloaded = total_size - bytes_remaining
+    percentage_of_completion = bytes_downloaded / total_size * 100
+    per = str(int(percentage_of_completion))
+    pp.configure(text=per + "%")
+    pp.update()
+    progress_bar.set(percentage_of_completion / 100)
 
 # System Settings
 customtkinter.set_appearance_mode("System")
