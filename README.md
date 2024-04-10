@@ -14,4 +14,6 @@ source .venv/bin/activate
 deactivate
 
 pip install xyz
+
+pip freeze > requirements.txt
 ```
