@@ -1,5 +1,9 @@
 Mon, March 4, 2024
 
+# Python
+
+![My Local Image](py.png)
+
 REPL = Read-Evaluate-Print-Loop
 
 ### Virtual Environment Commands
