@@ -42,8 +42,10 @@ class Person:
 person1 = Person("Soner", 11)
 person1.getName()
 
+############################################
 # Accessing and modifying data:
-# 1. The traditional way: maske the data private and use getters and setters;
+############################################
+# 1. The traditional, java way: make the data private and use getters and setters;
 
 from datetime import datetime
 
@@ -79,7 +81,18 @@ print("Properties")
 class User:
     def __init__(self, username, email) -> None:
         self.username = username
-        self.email = email
+        self._email = email
+
+    @property
+    def email(self):
+        print(f"Email accessed at {datetime.now()}")
+        return self._email
+
+    @email.setter
+    def email(self, new_email):
+        if "@" in new_email:
+            self._email = new_email
 
 
 user1 = User("Soner", "kdsakfds@fdklskf.io")
+print(user1.email)
